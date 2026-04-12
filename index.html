@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BracketWise — Smarter Investing, Tax Bracket Wise</title>
+<meta name="description" content="AI-generated equity research for Indian investors, filtered by your tax bracket. Factor-based stock analysis, LTCG-optimised signals, macro intelligence — delivered daily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1117;--paper:#F7F3EE;--cream:#EDE8E1;
+  --gold:#C9A84C;--gold-lt:#E8C97A;
+  --green:#1A6B4A;--green-lt:#D4EDE4;
+  --red:#8B2020;--muted:#6B6560;--border:#D6CFC6;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(247,243,238,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.83rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:0.5rem 1.2rem!important;border-radius:2px}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,0.08) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(26,107,74,0.06) 0%,transparent 50%);pointer-events:none}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 3rem 5rem 4rem}
+.eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.72rem;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.6s ease 0.2s forwards}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--green)}
+h1{font-family:var(--serif);font-size:clamp(2.8rem,4.5vw,4.2rem);font-weight:900;line-height:1.08;letter-spacing:-0.03em;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.6s ease 0.35s forwards}
+h1 em{font-style:normal;color:var(--gold);position:relative}
+h1 em::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:3px;background:var(--gold);opacity:0.25}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:430px;margin-bottom:2rem;line-height:1.75;font-weight:300;opacity:0;animation:fadeUp 0.6s ease 0.5s forwards}
+
+/* BRACKET SELECTOR */
+.bracket-box{background:white;border:1px solid var(--border);border-radius:3px;padding:1.2rem 1.4rem;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.6s ease 0.6s forwards}
+.bracket-box label{display:block;font-family:var(--mono);font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.7rem}
+.bracket-opts{display:flex;gap:0.45rem;flex-wrap:wrap}
+.bbtn{padding:0.38rem 0.85rem;border:1px solid var(--border);background:var(--paper);border-radius:2px;font-family:var(--mono);font-size:0.76rem;cursor:pointer;transition:all 0.15s;color:var(--ink)}
+.bbtn:hover,.bbtn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.bracket-note{font-size:0.73rem;color:var(--muted);margin-top:0.55rem;font-style:italic}
+
+/* FORM */
+.signup-form{display:flex;max-width:420px;opacity:0;animation:fadeUp 0.6s ease 0.7s forwards}
+.signup-form input{flex:1;padding:0.85rem 1rem;border:1px solid var(--border);border-right:none;background:white;font-family:var(--sans);font-size:0.9rem;color:var(--ink);outline:none;border-radius:2px 0 0 2px}
+.signup-form input:focus{border-color:var(--ink)}
+.signup-form input::placeholder{color:#aaa}
+.signup-form button{padding:0.85rem 1.3rem;background:var(--gold);color:var(--ink);border:none;font-family:var(--sans);font-size:0.83rem;font-weight:600;cursor:pointer;border-radius:0 2px 2px 0;letter-spacing:0.02em;transition:background 0.2s;white-space:nowrap}
+.signup-form button:hover{background:var(--gold-lt)}
+.trust-line{margin-top:0.9rem;font-size:0.73rem;color:var(--muted);opacity:0;animation:fadeUp 0.6s ease 0.8s forwards}
+.success-msg{display:none;background:var(--green-lt);color:var(--green);padding:0.7rem 1rem;border-radius:2px;font-size:0.83rem;margin-top:0.7rem;font-weight:500}
+
+/* SIGNAL CARD */
+.hero-right{display:flex;align-items:center;justify-content:center;padding:5rem 4rem 5rem 2rem;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+.signal-card{background:var(--ink);color:var(--paper);border-radius:6px;padding:1.8rem;width:100%;max-width:370px;position:relative;overflow:hidden;box-shadow:0 32px 64px rgba(13,17,23,0.25)}
+.signal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--green))}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.3rem}
+.card-label{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,238,0.45)}
+.card-badge{font-family:var(--mono);font-size:0.6rem;padding:0.22rem 0.55rem;background:rgba(201,168,76,0.18);color:var(--gold-lt);border-radius:2px;letter-spacing:0.08em}
+.sig-row{display:flex;justify-content:space-between;align-items:center;padding:0.85rem 0;border-bottom:1px solid rgba(247,243,238,0.07)}
+.sig-row:last-child{border-bottom:none}
+.sig-sym{font-family:var(--serif);font-size:1.05rem;font-weight:700;margin-bottom:0.18rem}
+.sig-sec{font-size:0.68rem;color:rgba(247,243,238,0.4);font-family:var(--mono)}
+.sig-action{display:inline-block;font-family:var(--mono);font-size:0.63rem;font-weight:500;padding:0.18rem 0.55rem;border-radius:2px;letter-spacing:0.08em;margin-bottom:0.25rem}
+.sig-action.buy{background:rgba(26,107,74,0.25);color:#5DBF94}
+.sig-action.watch{background:rgba(201,168,76,0.18);color:var(--gold-lt)}
+.sig-action.trim{background:rgba(139,32,32,0.22);color:#E88080}
+.sig-score{font-family:var(--mono);font-size:0.68rem;color:rgba(247,243,238,0.4)}
+.card-footer{margin-top:1.1rem;padding-top:0.9rem;border-top:1px solid rgba(247,243,238,0.07);display:flex;justify-content:space-between;align-items:center}
+.card-meta{font-family:var(--mono);font-size:0.6rem;color:rgba(247,243,238,0.3)}
+.card-tax{font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.5rem;background:rgba(26,107,74,0.18);color:#5DBF94;border-radius:2px}
+
+/* TICKER */
+.ticker{background:var(--ink);color:var(--paper);padding:0.6rem 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;gap:3rem;animation:ticker 32s linear infinite}
+.ticker-item{font-family:var(--mono);font-size:0.73rem;color:rgba(247,243,238,0.55);display:inline-flex;align-items:center;gap:0.45rem}
+.up{color:#5DBF94}.down{color:#E88080}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+.sec-eye{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem}
+.sec-title{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:900;line-height:1.15;letter-spacing:-0.025em;margin-bottom:0.9rem;max-width:580px}
+.sec-sub{color:var(--muted);font-size:0.97rem;max-width:500px;line-height:1.75;font-weight:300}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3rem}
+.step{padding:1.8rem;background:white;border:1px solid var(--border);border-radius:3px;transition:transform 0.2s,box-shadow 0.2s}
+.step:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,17,23,0.09)}
+.step-num{font-family:var(--serif);font-size:2.8rem;font-weight:900;color:var(--cream);line-height:1;margin-bottom:0.9rem}
+.step h3{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-bottom:0.6rem}
+.step p{font-size:0.85rem;color:var(--muted);line-height:1.7}
+
+/* TAX SECTION */
+.tax-section{background:var(--ink);color:var(--paper);padding:6rem 4rem}
+.tax-inner{max-width:1200px;margin:0 auto}
+.tax-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+.tax-card{background:rgba(247,243,238,0.04);border:1px solid rgba(247,243,238,0.1);border-radius:3px;padding:1.8rem;transition:background 0.2s}
+.tax-card:hover{background:rgba(247,243,238,0.07)}
+.tax-card.featured{border-color:var(--gold);background:rgba(201,168,76,0.05)}
+.tax-lbl{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.45rem}
+.tax-bracket{font-family:var(--serif);font-size:1.7rem;font-weight:900;margin-bottom:0.35rem}
+.tax-income{font-size:0.75rem;color:rgba(247,243,238,0.4);font-family:var(--mono);margin-bottom:1.3rem}
+.tax-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.tax-list li{font-size:0.8rem;color:rgba(247,243,238,0.65);display:flex;align-items:flex-start;gap:0.55rem;line-height:1.5}
+.tax-list li::before{content:'→';color:var(--gold);flex-shrink:0;font-family:var(--mono);font-size:0.72rem;margin-top:0.05rem}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:3rem;align-items:start}
+.feat-item{display:flex;gap:1.1rem;padding:1.3rem 0;border-bottom:1px solid var(--border)}
+.feat-icon{width:38px;height:38px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.feat-title{font-family:var(--serif);font-size:0.97rem;font-weight:700;margin-bottom:0.3rem}
+.feat-desc{font-size:0.81rem;color:var(--muted);line-height:1.65}
+
+/* STATS */
+.backtest-section{background:var(--cream);padding:6rem 4rem}
+.backtest-inner{max-width:1200px;margin:0 auto}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2.5rem;background:white;border:1px solid var(--border);border-radius:3px}
+.stat{text-align:center;padding:2rem 1rem;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-val{font-family:var(--serif);font-size:2.3rem;font-weight:900;line-height:1;margin-bottom:0.35rem}
+.stat-val.green{color:var(--green)}.stat-val.gold{color:var(--gold)}
+.stat-lbl{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.stat-note{font-size:0.7rem;color:var(--muted);margin-top:0.25rem;font-style:italic}
+.bt-disc{margin-top:1.4rem;font-size:0.72rem;color:var(--muted);font-style:italic;text-align:center;line-height:1.65;max-width:700px;margin-left:auto;margin-right:auto}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem;align-items:start}
+.price-card{border:1px solid var(--border);border-radius:3px;padding:1.8rem;background:white;transition:transform 0.2s,box-shadow 0.2s;position:relative}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,17,23,0.08)}
+.price-card.featured{border-color:var(--gold)}
+.feat-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:2px;white-space:nowrap}
+.price-tier{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem}
+.price-amt{font-family:var(--serif);font-size:2.3rem;font-weight:900;line-height:1;margin-bottom:0.2rem}
+.price-per{font-size:0.78rem;color:var(--muted);margin-bottom:1.3rem}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin-bottom:1.8rem}
+.price-list li{font-size:0.82rem;display:flex;align-items:flex-start;gap:0.45rem;line-height:1.5}
+.price-list li.inc{color:var(--ink)}.price-list li:not(.inc){color:var(--muted)}
+.price-list li.inc::before{content:'✓';color:var(--green);flex-shrink:0;font-size:0.78rem;margin-top:0.05rem}
+.price-list li:not(.inc)::before{content:'—';color:var(--border);flex-shrink:0;font-size:0.78rem;margin-top:0.05rem}
+.price-btn{display:block;width:100%;padding:0.82rem;text-align:center;border-radius:2px;font-family:var(--sans);font-size:0.83rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;border:1px solid var(--ink);color:var(--ink);background:transparent}
+.price-btn:hover{background:var(--ink);color:var(--paper)}
+.price-btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.price-btn.primary:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+
+/* CTA */
+.cta-section{background:var(--ink);padding:6rem 4rem;text-align:center}
+.cta-inner{max-width:520px;margin:0 auto}
+.cta-form{display:flex;max-width:420px;margin:0 auto}
+.cta-form input{flex:1;padding:0.88rem 1rem;background:rgba(247,243,238,0.07);border:1px solid rgba(247,243,238,0.18);border-right:none;color:var(--paper);font-family:var(--sans);font-size:0.9rem;outline:none;border-radius:2px 0 0 2px}
+.cta-form input::placeholder{color:rgba(247,243,238,0.28)}
+.cta-form input:focus{border-color:var(--gold)}
+.cta-form button{padding:0.88rem 1.3rem;background:var(--gold);color:var(--ink);border:none;font-family:var(--sans);font-weight:600;font-size:0.83rem;cursor:pointer;border-radius:0 2px 2px 0;transition:background 0.2s;white-space:nowrap}
+.cta-form button:hover{background:var(--gold-lt)}
+
+/* FOOTER */
+footer{background:#060A0F;color:rgba(247,243,238,0.45);padding:3rem 4rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand .logo{color:var(--paper);display:block;margin-bottom:0.65rem}
+.footer-desc{font-size:0.78rem;line-height:1.7;color:rgba(247,243,238,0.35);max-width:240px}
+.footer-col h4{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,238,0.45);margin-bottom:0.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.45rem}
+.footer-col ul li a{font-size:0.8rem;color:rgba(247,243,238,0.35);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--paper)}
+.footer-bottom{max-width:1200px;margin:2.2rem auto 0;padding-top:1.8rem;border-top:1px solid rgba(247,243,238,0.06);display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.footer-disc{font-size:0.7rem;color:rgba(247,243,238,0.22);line-height:1.7;max-width:680px}
+.footer-copy{font-size:0.7rem;color:rgba(247,243,238,0.22);white-space:nowrap}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}.hero-right{display:none}
+  .steps,.tax-grid,.price-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .section,.backtest-section,.tax-section,.cta-section,footer{padding:4rem 1.5rem}
+  .hero-left{padding:4rem 1.5rem}
+}
+</style>
+<!-- Google AdSense — add client ID here when approved -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<!-- AdSense auto ads will appear here once approved and script is active -->
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Bracket<span>Wise</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#brackets">Tax brackets</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#signup" class="nav-cta">Get free brief</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">AI Equity Research · India</div>
+    <h1>Smarter investing,<br><em>tax bracket</em> wise.</h1>
+    <p class="hero-sub">AI-generated equity research for Indian investors — filtered by your tax slab. Proprietary factor-scored signals, LTCG-optimised picks, macro intelligence. Delivered free every week.</p>
+
+    <div class="bracket-box">
+      <label>Your income tax bracket</label>
+      <div class="bracket-opts">
+        <button class="bbtn" onclick="setBracket(this,'5%')">0–5% slab</button>
+        <button class="bbtn" onclick="setBracket(this,'20%')">20% slab</button>
+        <button class="bbtn active" onclick="setBracket(this,'30%')">30% slab</button>
+        <button class="bbtn" onclick="setBracket(this,'HNI')">HNI / ₹1Cr+</button>
+      </div>
+      <p class="bracket-note" id="bnote">At 30% slab — LTCG focus, no F&amp;O, no dividends, NPS 80CCD(2) optimisation.</p>
+    </div>
+
+    <div class="signup-form">
+      <input type="email" id="h-email" placeholder="your@email.com">
+      <button onclick="signup('h')">Get free brief →</button>
+    </div>
+    <div class="success-msg" id="h-ok">✓ You're on the list. First brief arrives this Sunday.</div>
+    <p class="trust-line">Free newsletter · No spam · Unsubscribe anytime · Not SEBI-registered advice</p>
+  </div>
+
+  <div class="hero-right">
+    <div class="signal-card">
+      <div class="card-header">
+        <span class="card-label">Today's signals · 30% bracket</span>
+        <span class="card-badge">AI Research</span>
+      </div>
+      <div class="sig-row">
+        <div><div class="sig-sym">ICICIBANK</div><div class="sig-sec">Banking · PE 18x · Q:62</div></div>
+        <div style="text-align:right"><div class="sig-action buy">HIGH ATTENTION</div><div class="sig-score">Score 52/100</div></div>
+      </div>
+      <div class="sig-row">
+        <div><div class="sig-sym">PERSISTENT</div><div class="sig-sec">IT · PE 49x · G:75</div></div>
+        <div style="text-align:right"><div class="sig-action watch">ON RADAR</div><div class="sig-score">Score 44/100</div></div>
+      </div>
+      <div class="sig-row">
+        <div><div class="sig-sym">DIXON</div><div class="sig-sec">Electronics · 25% wt</div></div>
+        <div style="text-align:right"><div class="sig-action trim">REDUCE WEIGHT</div><div class="sig-score">Score 43/100</div></div>
+      </div>
+      <div class="card-footer">
+        <span class="card-meta">12 Apr 2026 · Outcome: Apr 2027</span>
+        <span class="card-tax">Research signal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">NIFTY 50 <span class="up">▲ 24,050 +1.16%</span></span>
+    <span class="ticker-item">BANK NIFTY <span class="up">▲ 55,912 +1.99%</span></span>
+    <span class="ticker-item">INDIA VIX <span class="down">18.9 ELEVATED</span></span>
+    <span class="ticker-item">USD/INR <span class="down">▲ 93.05 +0.84%</span></span>
+    <span class="ticker-item">CRUDE OIL <span class="down">▼ $65.4 -1.3%</span></span>
+    <span class="ticker-item">FII FLOWS <span class="down">▼ SELLING</span></span>
+    <span class="ticker-item">LTCG EXEMPTION <span class="up">₹1.25L RESET · FY2027</span></span>
+    <span class="ticker-item">NIFTY 50 <span class="up">▲ 24,050 +1.16%</span></span>
+    <span class="ticker-item">BANK NIFTY <span class="up">▲ 55,912 +1.99%</span></span>
+    <span class="ticker-item">INDIA VIX <span class="down">18.9 ELEVATED</span></span>
+    <span class="ticker-item">USD/INR <span class="down">▲ 93.05 +0.84%</span></span>
+    <span class="ticker-item">CRUDE OIL <span class="down">▼ $65.4 -1.3%</span></span>
+    <span class="ticker-item">FII FLOWS <span class="down">▼ SELLING</span></span>
+    <span class="ticker-item">LTCG EXEMPTION <span class="up">₹1.25L RESET · FY2027</span></span>
+  </div>
+</div>
+
+<!-- AdSense leaderboard ad — activates after AdSense approval -->
+<div style="text-align:center;padding:1rem;background:var(--cream);border-bottom:1px solid var(--border);min-height:0" id="ad-leaderboard">
+<!-- ins class="adsbygoogle" ... will go here -->
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="reveal">
+    <p class="sec-eye">The system</p>
+    <h2 class="sec-title">Research that knows your tax bracket.</h2>
+    <p class="sec-sub">Most investment tools ignore the single biggest drag on your returns — taxes. We don't. Every signal is optimised for your slab rate.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3>Factor screening</h3>
+      <p>Our proprietary multi-factor model scores NSE 500 stocks daily. Automated screening gates filter out expensive momentum traps and low-quality businesses before any signal reaches you — protecting high-bracket investors from the most common return-destroying mistakes.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3>Tax bracket filter</h3>
+      <p>At 30% slab, every signal is reviewed for LTCG eligibility. Dividend stocks flagged as inefficient (taxed at 30% for you). F&amp;O excluded entirely. Your after-tax return is the only metric that matters.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3>Macro overlay</h3>
+      <p>Crude oil, dollar index, India VIX and FII flows scanned every morning. When VIX is elevated, recommended position sizes automatically reduce by 30%. Brief arrives at 7:30 AM before markets open.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TAX BRACKETS -->
+<div class="tax-section" id="brackets">
+  <div class="tax-inner">
+    <p class="sec-eye reveal" style="color:var(--gold)">Tax bracket intelligence</p>
+    <h2 class="sec-title reveal" style="color:var(--paper)">One size never fit all investors.</h2>
+    <p class="sec-sub reveal" style="color:rgba(247,243,238,0.55)">The same stock can be a good or bad investment depending on your tax slab. We show you the difference.</p>
+    <div class="tax-grid">
+      <div class="tax-card reveal">
+        <div class="tax-lbl">Growth investors</div>
+        <div class="tax-bracket">0–5% slab</div>
+        <div class="tax-income">Income below ₹7L</div>
+        <ul class="tax-list">
+          <li>STCG tolerable at 20% — more flexibility</li>
+          <li>Momentum and growth stocks suitable</li>
+          <li>Small/midcap allocation up to 30%</li>
+          <li>Tax is not the primary constraint</li>
+        </ul>
+      </div>
+      <div class="tax-card reveal">
+        <div class="tax-lbl">Balanced investors</div>
+        <div class="tax-bracket">20% slab</div>
+        <div class="tax-income">Income ₹7L–₹15L</div>
+        <ul class="tax-list">
+          <li>LTCG strongly preferred over STCG</li>
+          <li>Quality + growth combination ideal</li>
+          <li>Avoid F&amp;O — taxed at slab rate</li>
+          <li>Annual LTCG harvest in February</li>
+        </ul>
+      </div>
+      <div class="tax-card featured reveal">
+        <div class="tax-lbl">High-income professionals</div>
+        <div class="tax-bracket">30% slab</div>
+        <div class="tax-income">Income above ₹15L</div>
+        <ul class="tax-list">
+          <li>LTCG at 12.5% vs STCG 20% — critical</li>
+          <li>No dividend stocks — taxed at 30%</li>
+          <li>No F&amp;O — business income at 30%</li>
+          <li>NPS 80CCD(2) — 14% of basic deductible</li>
+          <li>ESOP: exercise only at liquidity event</li>
+          <li>₹1.25L free exemption resets every April</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="research">
+  <div class="reveal">
+    <p class="sec-eye">What you receive</p>
+    <h2 class="sec-title">Research that works while you sleep.</h2>
+    <p class="sec-sub">AI-generated research delivered every week. One insight, one tax action, one thing to watch — filtered for your bracket.</p>
+  </div>
+  <div class="feat-grid">
+    <div>
+      <div class="feat-item reveal"><div class="feat-icon">📊</div><div><div class="feat-title">Factor screener</div><p class="feat-desc">Our proprietary model scores NSE 500 stocks daily across multiple fundamental and technical dimensions. Screening gates automatically exclude the stocks most likely to destroy after-tax returns for high-bracket investors.</p></div></div>
+      <div class="feat-item reveal"><div class="feat-icon">🌐</div><div><div class="feat-title">Global macro scan</div><p class="feat-desc">Crude oil, dollar index, India VIX and FII flows scanned every morning. Our fear index algorithm automatically adjusts recommended position sizes based on market conditions. RISK_OFF signals trigger defensive mode — protecting capital before it needs recovering.</p></div></div>
+      <div class="feat-item reveal"><div class="feat-icon">🛡️</div><div><div class="feat-title">FOMO filter</div><p class="feat-desc">Our sentiment filter detects stocks driven by retail frenzy rather than fundamentals — and automatically excludes them from buy signals. Protects you from the most common high-bracket investor mistake: buying momentum at the top and paying 20% STCG on the inevitable correction.</p></div></div>
+    </div>
+    <div>
+      <div class="feat-item reveal"><div class="feat-icon">🏛️</div><div><div class="feat-title">Tax calendar alerts</div><p class="feat-desc">LTCG harvest window in February, STCG loss harvest in March, advance tax dates, ITR reminder — all automated via Telegram. Saves up to ₹15,625 per year.</p></div></div>
+      <div class="feat-item reveal"><div class="feat-icon">📞</div><div><div class="feat-title">Concall intelligence</div><p class="feat-desc">Quarterly results analysed within minutes of announcement. Management tone, revenue trajectory, order book, margin trends — extracted and rated automatically.</p></div></div>
+      <div class="feat-item reveal"><div class="feat-icon">🔄</div><div><div class="feat-title">Self-improving model</div><p class="feat-desc">Every signal is published, logged, and outcome-reported publicly. Wins and misses both. Monthly review improves the model from real data. The track record builds in public — the only kind worth trusting.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<div class="backtest-section">
+  <div class="backtest-inner">
+    <p class="sec-eye reveal">Track record</p>
+    <h2 class="sec-title reveal">Every call. Published. Outcome reported.</h2>
+    <p class="sec-sub reveal">We publish our signals openly and report back on every one — what we got right, what we missed, and why. A track record built in public is the only kind worth trusting.</p>
+
+    <div class="stats-row reveal">
+      <div class="stat">
+        <div class="stat-val" style="font-size:1.8rem">Apr 2026</div>
+        <div class="stat-lbl">Track record started</div>
+        <div class="stat-note">Every signal logged from day one</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val green">Weekly</div>
+        <div class="stat-lbl">Signal frequency</div>
+        <div class="stat-note">One insight. Tracked to outcome.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val gold">12 mo</div>
+        <div class="stat-lbl">Outcome horizon</div>
+        <div class="stat-note">LTCG-aligned holding period</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val green">Public</div>
+        <div class="stat-lbl">Transparency</div>
+        <div class="stat-note">Wins and misses both reported</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:1.8rem;background:white;border:1px solid var(--border);border-radius:3px;overflow:hidden">
+      <div style="background:var(--ink);padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(247,243,238,0.6)">Signal log — Week 1</span>
+        <span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold-lt)">Outcome: Apr 2027</span>
+      </div>
+      <div style="padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:1rem">
+        <div>
+          <div style="font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:0.2rem">ICICIBANK</div>
+          <div style="font-size:0.75rem;color:var(--muted);font-family:var(--mono)">Apr 12, 2026 · Banking · 30% bracket</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:var(--mono);font-size:0.7rem;padding:0.25rem 0.7rem;background:var(--green-lt);color:var(--green);border-radius:2px;margin-bottom:0.3rem">FLAGGED</div>
+          <div style="font-size:0.72rem;color:var(--muted)">Outcome check: Apr 2027</div>
+        </div>
+      </div>
+      <div style="padding:1rem 1.5rem;background:var(--light,#F7F3EE);font-size:0.8rem;color:var(--muted);font-style:italic">
+        "FII selling creating temporary price disconnect from unchanged fundamentals. Factor model: HIGH ATTENTION." — Week 1 brief
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:1rem;padding:1.2rem 1.5rem;background:white;border:1px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+      <div>
+        <p style="font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:0.25rem">Want the full brief with tax actions?</p>
+        <p style="font-size:0.8rem;color:var(--muted)">Get the Week 1 brief in your inbox. We report outcomes — you decide if you trust us.</p>
+      </div>
+      <a href="#signup" style="flex-shrink:0;padding:0.72rem 1.4rem;background:var(--ink);color:var(--paper);text-decoration:none;font-size:0.82rem;font-weight:600;border-radius:2px;white-space:nowrap;letter-spacing:0.02em">Get Week 1 brief →</a>
+    </div>
+
+    <p class="bt-disc">All signals are AI-generated research — not SEBI-registered investment advice. Past signals do not guarantee future results. We report outcomes transparently including misses.</p>
+  </div>
+</div>
+
+<!-- Pricing section coming soon -->
+
+<!-- OTHER BRACKETS -->
+<section class="section">
+  <div class="reveal">
+    <p class="sec-eye">Tax bracket coverage</p>
+    <h2 class="sec-title">30% bracket live. Others coming soon.</h2>
+    <p class="sec-sub">Research filtered for your exact tax situation. We are starting with the 30% bracket — the most under-served by generic investment content.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.5rem">
+
+    <div class="reveal" style="border:2px solid var(--gold);border-radius:3px;padding:1.5rem;background:white;position:relative">
+      <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.7rem;border-radius:2px;white-space:nowrap">Live now</div>
+      <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem">30% Slab</div>
+      <div style="font-family:var(--serif);font-size:1.3rem;font-weight:900;margin-bottom:0.3rem">Above ₹15L</div>
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.6">LTCG focus · No dividends · No F&amp;O · NPS optimisation · ESOP guidance</div>
+    </div>
+
+    <div class="reveal" style="border:1px solid var(--border);border-radius:3px;padding:1.5rem;background:white;opacity:0.75">
+      <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem">Coming soon</div>
+      <div style="font-family:var(--serif);font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;color:var(--muted)">20% Slab</div>
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.6">₹7L–₹15L · More flexibility · Growth stocks · Different harvest timing</div>
+    </div>
+
+    <div class="reveal" style="border:1px solid var(--border);border-radius:3px;padding:1.5rem;background:white;opacity:0.75">
+      <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem">Coming soon</div>
+      <div style="font-family:var(--serif);font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;color:var(--muted)">0–5% Slab</div>
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.6">Below ₹7L · Broader universe · Momentum emphasis · STCG less penalising</div>
+    </div>
+
+    <div class="reveal" style="border:1px solid var(--border);border-radius:3px;padding:1.5rem;background:white;opacity:0.75">
+      <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem">Planned</div>
+      <div style="font-family:var(--serif);font-size:1.3rem;font-weight:900;margin-bottom:0.3rem;color:var(--muted)">HNI</div>
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.6">Above ₹1Cr · Surcharge planning · Unlisted securities · AIF exposure</div>
+    </div>
+
+  </div>
+  <p class="reveal" style="margin-top:1.2rem;font-size:0.8rem;color:var(--muted);text-align:center">Subscribe now — we will notify you when your bracket edition launches.</p>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="signup">
+  <div class="cta-inner">
+    <p class="sec-eye" style="color:var(--gold)">Get started</p>
+    <h2 class="sec-title reveal" style="color:var(--paper);max-width:100%;margin:0 auto 0.8rem">Get the weekly brief. Free.</h2>
+    <p class="sec-sub reveal" style="color:rgba(247,243,238,0.55);margin:0 auto 2.2rem">One market insight, one tax action, one thing to watch — every week. Filtered for your tax bracket. No spam.</p>
+    <div class="cta-form reveal">
+      <input type="email" id="c-email" placeholder="your@email.com">
+      <button onclick="signup('c')">Get weekly brief →</button>
+    </div>
+    <div class="success-msg" id="c-ok" style="max-width:420px;margin:0.7rem auto 0">✓ You're on the list. First brief arrives this Sunday.</div>
+    <p class="reveal" style="margin-top:1rem;font-size:0.72rem;color:rgba(247,243,238,0.28)">Free forever · No credit card · Unsubscribe anytime</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">Bracket<span>Wise</span></a>
+      <p class="footer-desc">AI-generated equity research for Indian investors, filtered by tax bracket. A Virat Ventures product.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#brackets">Tax brackets</a></li>
+        <li><a href="#research">Research</a></li>
+        
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Research</h4>
+      <ul>
+        <li><a href="#signup">Weekly brief</a></li>
+        <li><a href="#research">Factor model</a></li>
+        <li><a href="#brackets">Tax calendar</a></li>
+        <li><a href="#research">Backtest data</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disc">DISCLAIMER: BracketWise / Virat Ventures is NOT registered with SEBI as an Investment Adviser or Research Analyst. All content is AI-generated equity research for informational and educational purposes only. This does not constitute investment advice or a recommendation to buy, sell, or hold any security. Past model performance does not guarantee future results. Equity investments are subject to market risk. All investment decisions are your sole responsibility. Consult a SEBI-registered investment adviser for personalised advice. SEBI Investor Helpline: 1800 266 7575 | sebi.gov.in</p>
+    <p class="footer-copy">© 2026 Virat Ventures</p>
+  </div>
+</footer>
+
+<script>
+const notes={
+  '5%':'At 0–5% slab — growth stocks, momentum plays, STCG at 20% is tolerable.',
+  '20%':'At 20% slab — prefer LTCG, avoid F&O, quarterly rebalancing advised.',
+  '30%':'At 30% slab — LTCG focus, no F&O, no dividends, NPS 80CCD(2) optimisation.',
+  'HNI':'HNI bracket — surcharge planning, unlisted securities, AIF exposure considerations.'
+};
+
+function setBracket(btn,b){
+  document.querySelectorAll('.bbtn').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('bnote').textContent=notes[b];
+}
+
+function signup(src){
+  const inp=document.getElementById(src+'-email');
+  const ok=document.getElementById(src+'-ok');
+  const email=inp.value.trim();
+  if(!email||!email.includes('@')){
+    inp.style.borderColor='#E88080';
+    setTimeout(()=>inp.style.borderColor='',2000);
+    return;
+  }
+  const list=JSON.parse(localStorage.getItem('bw')||'[]');
+  list.push({email,bracket:document.querySelector('.bbtn.active')?.textContent,date:new Date().toISOString()});
+  localStorage.setItem('bw',JSON.stringify(list));
+  inp.closest('.signup-form,.cta-form').style.display='none';
+  ok.style.display='block';
+}
+
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*75);
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
