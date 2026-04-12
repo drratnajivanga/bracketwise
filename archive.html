@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Archive — BracketWise</title>
+<meta name="description" content="Every BracketWise research brief, published and archived. Every observation logged. Every outcome reported publicly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1117;--paper:#F7F3EE;--cream:#EDE8E1;
+  --gold:#C9A84C;--gold-lt:#E8C97A;
+  --green:#1A6B4A;--green-lt:#D4EDE4;
+  --red:#8B2020;--muted:#6B6560;--border:#D6CFC6;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(247,243,238,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.83rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:0.5rem 1.2rem!important;border-radius:2px}
+
+.page-header{padding:8rem 4rem 3rem;border-bottom:1px solid var(--border);max-width:1200px;margin:0 auto}
+.page-eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:0.75rem}
+.page-sub{font-size:0.92rem;color:var(--muted);max-width:560px;line-height:1.7;font-weight:300}
+
+/* TRACK RECORD STATS */
+.stats-bar{background:var(--ink);color:var(--paper);padding:1.5rem 4rem}
+.stats-bar-inner{max-width:1200px;margin:0 auto;display:flex;gap:3rem;align-items:center;flex-wrap:wrap}
+.stat-item{display:flex;flex-direction:column;gap:0.2rem}
+.stat-val{font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1}
+.stat-val.gold{color:var(--gold)}
+.stat-val.green{color:#5DBF94}
+.stat-lbl{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(247,243,238,0.45)}
+.stat-divider{width:1px;height:40px;background:rgba(247,243,238,0.12);flex-shrink:0}
+
+/* ARCHIVE TABLE */
+.archive-section{max-width:1200px;margin:0 auto;padding:3rem 4rem 6rem}
+.year-header{font-family:var(--serif);font-size:1.6rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:2px solid var(--ink)}
+
+.brief-row{display:grid;grid-template-columns:120px 1fr 180px 140px 100px;gap:1.5rem;align-items:start;padding:1.5rem 0;border-bottom:1px solid var(--border);transition:background 0.15s}
+.brief-row:hover{background:rgba(201,168,76,0.04);margin:0 -1rem;padding:1.5rem 1rem}
+.brief-row:last-child{border-bottom:none}
+
+.brief-date{font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;padding-top:0.2rem}
+.brief-content{}
+.brief-title{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:0.3rem;color:var(--ink)}
+.brief-observation{font-size:0.8rem;color:var(--muted);line-height:1.6;margin-bottom:0.4rem}
+.brief-stock-tag{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--mono);font-size:0.65rem;padding:0.18rem 0.6rem;background:var(--cream);border-radius:2px;color:var(--muted);letter-spacing:0.06em}
+
+.brief-signal{}
+.signal-chip{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:500;padding:0.22rem 0.7rem;border-radius:2px;letter-spacing:0.08em;margin-bottom:0.3rem}
+.sig-attention{background:rgba(26,107,74,0.12);color:var(--green)}
+.sig-radar{background:rgba(201,168,76,0.15);color:#A07820}
+.sig-reduce{background:rgba(139,32,32,0.12);color:var(--red)}
+.sig-pending{background:var(--cream);color:var(--muted)}
+.signal-detail{font-size:0.75rem;color:var(--muted);line-height:1.5}
+
+.brief-outcome{}
+.outcome-chip{display:inline-block;font-family:var(--mono);font-size:0.65rem;font-weight:500;padding:0.22rem 0.7rem;border-radius:2px;letter-spacing:0.08em;margin-bottom:0.3rem}
+.oc-pending{background:var(--cream);color:var(--muted)}
+.oc-correct{background:rgba(26,107,74,0.12);color:var(--green)}
+.oc-incorrect{background:rgba(139,32,32,0.12);color:var(--red)}
+.oc-partial{background:rgba(201,168,76,0.15);color:#A07820}
+.outcome-date{font-size:0.72rem;color:var(--muted);font-family:var(--mono)}
+
+.brief-download a{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--mono);font-size:0.68rem;color:var(--ink);text-decoration:none;padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:2px;transition:all 0.15s;letter-spacing:0.04em}
+.brief-download a:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* HEADER ROW */
+.brief-header{display:grid;grid-template-columns:120px 1fr 180px 140px 100px;gap:1.5rem;padding:0.75rem 0;margin-bottom:0.5rem}
+.brief-header span{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+
+/* COMING SOON ROW */
+.brief-row.future{opacity:0.45}
+.brief-row.future .brief-title{color:var(--muted)}
+
+/* DISCLAIMER */
+.archive-disclaimer{background:var(--cream);padding:2rem 4rem;border-top:1px solid var(--border)}
+.archive-disclaimer-inner{max-width:1200px;margin:0 auto;font-size:0.75rem;color:var(--muted);line-height:1.7}
+
+/* FOOTER */
+footer{background:#060A0F;color:rgba(247,243,238,0.45);padding:3rem 4rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand .logo{color:var(--paper);display:block;margin-bottom:0.65rem}
+.footer-desc{font-size:0.78rem;line-height:1.7;color:rgba(247,243,238,0.35);max-width:240px}
+.footer-col h4{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,238,0.45);margin-bottom:0.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.45rem}
+.footer-col ul li a{font-size:0.8rem;color:rgba(247,243,238,0.35);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--paper)}
+.footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.8rem;border-top:1px solid rgba(247,243,238,0.06);display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.footer-disc{font-size:0.7rem;color:rgba(247,243,238,0.22);line-height:1.7;max-width:680px}
+.footer-copy{font-size:0.7rem;color:rgba(247,243,238,0.22);white-space:nowrap}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .page-header,.archive-section,.stats-bar,.archive-disclaimer,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .page-header{padding-top:7rem}
+  .brief-row,.brief-header{grid-template-columns:1fr;gap:0.5rem}
+  .brief-header{display:none}
+  .brief-row{padding:1.2rem 0}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .stats-bar-inner{gap:1.5rem}
+  .stat-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Bracket<span>Wise</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How it works</a></li>
+    <li><a href="index.html#brackets">Tax brackets</a></li>
+    <li><a href="archive.html" class="active">Research archive</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#signup" class="nav-cta">Get free brief</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-eyebrow">Track record</p>
+  <h1 class="page-title">Every call. Published. Outcome reported.</h1>
+  <p class="page-sub">Every research observation we make is logged here with the date, the thesis, and — when the outcome horizon arrives — what actually happened. Wins and misses both.</p>
+</div>
+
+<!-- LIVE STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <span class="stat-val gold">1</span>
+      <span class="stat-lbl">Briefs published</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-val">1</span>
+      <span class="stat-lbl">Observations logged</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-val">0</span>
+      <span class="stat-lbl">Outcomes reported</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-val green">Apr 2027</span>
+      <span class="stat-lbl">First outcome check</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-val">30%</span>
+      <span class="stat-lbl">Bracket covered</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHIVE -->
+<div class="archive-section">
+
+  <h2 class="year-header">2026</h2>
+
+  <!-- COLUMN HEADERS -->
+  <div class="brief-header">
+    <span>Date</span>
+    <span>Brief & observation</span>
+    <span>Research signal</span>
+    <span>Outcome</span>
+    <span>Download</span>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="brief-row">
+    <div class="brief-date">12 Apr 2026<br>Week 01</div>
+    <div class="brief-content">
+      <div class="brief-title">The market is pricing in fear. The fundamentals have not changed.</div>
+      <p class="brief-observation">Global risk-off rotation driving FII outflows from Indian equities. VIX elevated. Thesis: temporary dislocation, not fundamental deterioration. Quality businesses at reasonable valuations historically offer favourable entry during fear episodes.</p>
+      <span class="brief-stock-tag">📍 ICICIBANK · Private Banking · 30% bracket</span>
+    </div>
+    <div class="brief-signal">
+      <div class="signal-chip sig-attention">HIGH ATTENTION</div>
+      <p class="signal-detail">~19% below recent highs<br>Sector-wide, not company-specific<br>Tax: LTCG clock starts Apr 2026</p>
+    </div>
+    <div class="brief-outcome">
+      <div class="outcome-chip oc-pending">PENDING</div>
+      <p class="outcome-date">Outcome check:<br>April 2027</p>
+    </div>
+    <div class="brief-download">
+      <a href="briefs/2026/week01-april-12.pdf" target="_blank">↓ PDF</a>
+    </div>
+  </div>
+
+  <!-- FUTURE WEEKS — placeholder to show the pattern -->
+  <div class="brief-row future">
+    <div class="brief-date">19 Apr 2026<br>Week 02</div>
+    <div class="brief-content">
+      <div class="brief-title">Coming Sunday — INFY Q4 results analysis + next observation</div>
+      <p class="brief-observation">Will cover Infosys Q4 results, FY27 guidance implications for IT sector, and one new research observation for the week.</p>
+    </div>
+    <div class="brief-signal">
+      <div class="signal-chip sig-pending">TBD</div>
+    </div>
+    <div class="brief-outcome">
+      <div class="outcome-chip oc-pending">NOT YET</div>
+    </div>
+    <div class="brief-download" style="color:var(--muted);font-size:0.75rem;font-family:var(--mono)">Sunday</div>
+  </div>
+
+</div>
+
+<!-- DISCLAIMER -->
+<div class="archive-disclaimer">
+  <div class="archive-disclaimer-inner">
+    <strong>Research archive disclaimer:</strong> All observations listed above are AI-generated market research logged at the time of publication. They are provided for informational purposes only and do not constitute investment advice or a recommendation to buy, sell, or hold any security. BracketWise / Virat Ventures is NOT registered with SEBI as an Investment Adviser or Research Analyst. Past observations do not guarantee future outcomes. All investment decisions are your sole responsibility. Outcome reports reflect what actually occurred — including cases where our thesis was wrong. SEBI Helpline: 1800 266 7575 | sebi.gov.in
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Bracket<span>Wise</span></a>
+      <p class="footer-desc">AI-generated equity research for Indian investors, filtered by tax bracket. A Virat Ventures product.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#brackets">Tax brackets</a></li>
+        <li><a href="archive.html">Research archive</a></li>
+        <li><a href="index.html#signup">Get free brief</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="privacy.html#terms">Terms of use</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Archive</h4>
+      <ul>
+        <li><a href="archive.html">All briefs</a></li>
+        <li><a href="briefs/2026/week01-april-12.pdf">Week 1 — Apr 12</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disc">DISCLAIMER: BracketWise / Virat Ventures is NOT registered with SEBI as an Investment Adviser or Research Analyst. All content is AI-generated equity research for informational and educational purposes only. Not investment advice. All investment decisions are your sole responsibility. SEBI Helpline: 1800 266 7575 | sebi.gov.in</p>
+    <p class="footer-copy">© 2026 Virat Ventures</p>
+  </div>
+</footer>
+
+</body>
+</html>
