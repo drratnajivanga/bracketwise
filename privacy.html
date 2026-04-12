@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — BracketWise</title>
+<meta name="description" content="Privacy Policy for BracketWise — how we collect, use, and protect your personal information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1117;--paper:#F7F3EE;--cream:#EDE8E1;
+  --gold:#C9A84C;--gold-lt:#E8C97A;
+  --green:#1A6B4A;--green-lt:#D4EDE4;
+  --muted:#6B6560;--border:#D6CFC6;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(247,243,238,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.83rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:0.5rem 1.2rem!important;border-radius:2px}
+
+/* LAYOUT */
+.page-header{padding:8rem 4rem 3rem;border-bottom:1px solid var(--border)}
+.page-header-inner{max-width:800px;margin:0 auto}
+.page-eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.page-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem}
+.page-meta{font-size:0.8rem;color:var(--muted);font-family:var(--mono)}
+
+.content{max-width:800px;margin:0 auto;padding:3rem 4rem 6rem}
+
+/* SECTIONS */
+.policy-section{margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
+.policy-section:last-child{border-bottom:none;margin-bottom:0}
+.policy-section h2{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:1rem;letter-spacing:-0.02em}
+.policy-section h3{font-family:var(--sans);font-size:0.95rem;font-weight:600;margin:1.2rem 0 0.5rem;color:var(--ink)}
+.policy-section p{font-size:0.9rem;color:var(--muted);line-height:1.8;margin-bottom:0.75rem}
+.policy-section p:last-child{margin-bottom:0}
+.policy-section ul{margin:0.5rem 0 0.75rem 1.2rem}
+.policy-section ul li{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:0.3rem}
+.policy-section a{color:var(--green);text-decoration:underline}
+
+/* HIGHLIGHT BOX */
+.highlight-box{background:var(--cream);border-left:3px solid var(--gold);padding:1rem 1.2rem;border-radius:0 3px 3px 0;margin:1rem 0;font-size:0.88rem;color:var(--ink);line-height:1.7}
+
+/* TOC */
+.toc{background:white;border:1px solid var(--border);border-radius:3px;padding:1.5rem;margin-bottom:3rem}
+.toc h3{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem}
+.toc ol{margin-left:1.2rem}
+.toc ol li{margin-bottom:0.35rem}
+.toc ol li a{font-size:0.85rem;color:var(--green);text-decoration:none}
+.toc ol li a:hover{text-decoration:underline}
+
+/* FOOTER */
+footer{background:#060A0F;color:rgba(247,243,238,0.45);padding:3rem 4rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand .logo{color:var(--paper);display:block;margin-bottom:0.65rem}
+.footer-desc{font-size:0.78rem;line-height:1.7;color:rgba(247,243,238,0.35);max-width:240px}
+.footer-col h4{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,238,0.45);margin-bottom:0.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.45rem}
+.footer-col ul li a{font-size:0.8rem;color:rgba(247,243,238,0.35);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--paper)}
+.footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.8rem;border-top:1px solid rgba(247,243,238,0.06);display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.footer-disc{font-size:0.7rem;color:rgba(247,243,238,0.22);line-height:1.7;max-width:680px}
+.footer-copy{font-size:0.7rem;color:rgba(247,243,238,0.22);white-space:nowrap}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .page-header{padding:7rem 1.5rem 2rem}
+  .content{padding:2rem 1.5rem 4rem}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  footer{padding:3rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Bracket<span>Wise</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How it works</a></li>
+    <li><a href="index.html#brackets">Tax brackets</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#signup" class="nav-cta">Get free brief</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Legal</p>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Last updated: April 12, 2026 · Effective: April 12, 2026</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <div class="highlight-box">
+    This Privacy Policy explains how BracketWise (operated by Virat Ventures) collects, uses, and protects your personal information when you visit bracketwise.in or subscribe to our weekly research brief. We comply with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India.
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#who-we-are">Who we are</a></li>
+      <li><a href="#data-we-collect">Data we collect</a></li>
+      <li><a href="#how-we-use">How we use your data</a></li>
+      <li><a href="#cookies">Cookies and advertising</a></li>
+      <li><a href="#data-sharing">Data sharing</a></li>
+      <li><a href="#your-rights">Your rights</a></li>
+      <li><a href="#data-security">Data security</a></li>
+      <li><a href="#children">Children's privacy</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact us</a></li>
+      <li><a href="#disclaimer">Investment disclaimer</a></li>
+      <li><a href="#terms">Terms of use</a></li>
+    </ol>
+  </div>
+
+  <!-- 1. WHO WE ARE -->
+  <div class="policy-section" id="who-we-are">
+    <h2>1. Who we are</h2>
+    <p>BracketWise is an AI-generated equity research platform operated by Virat Ventures, based in Bengaluru, India. Our website is located at <a href="https://bracketwise.in">bracketwise.in</a>.</p>
+    <p>For privacy-related queries, contact us at: <strong>privacy@bracketwise.in</strong></p>
+    <p>BracketWise is NOT registered with the Securities and Exchange Board of India (SEBI) as an Investment Adviser or Research Analyst. All content is for informational purposes only.</p>
+  </div>
+
+  <!-- 2. DATA WE COLLECT -->
+  <div class="policy-section" id="data-we-collect">
+    <h2>2. Data we collect</h2>
+    <h3>Information you provide</h3>
+    <ul>
+      <li><strong>Email address</strong> — when you subscribe to our weekly research brief</li>
+      <li><strong>Tax bracket preference</strong> — if you select your income bracket on the website (stored locally in your browser only, not on our servers)</li>
+    </ul>
+    <h3>Information collected automatically</h3>
+    <ul>
+      <li><strong>Usage data</strong> — pages visited, time on site, browser type, device type, referring URL</li>
+      <li><strong>IP address</strong> — collected automatically by our hosting provider (GitHub Pages) and analytics services</li>
+      <li><strong>Cookies</strong> — see Section 4 for details</li>
+    </ul>
+    <h3>Information we do NOT collect</h3>
+    <ul>
+      <li>We do not collect your name, phone number, address, or any financial account details</li>
+      <li>We do not collect your PAN, Aadhaar, or any government ID</li>
+      <li>We do not collect your portfolio holdings or trading history</li>
+    </ul>
+  </div>
+
+  <!-- 3. HOW WE USE -->
+  <div class="policy-section" id="how-we-use">
+    <h2>3. How we use your data</h2>
+    <p>We use the information we collect for the following purposes:</p>
+    <ul>
+      <li><strong>Email address</strong> — to send you the weekly BracketWise research brief you subscribed to, and occasional product updates. You can unsubscribe at any time using the link in any email.</li>
+      <li><strong>Usage data</strong> — to understand how visitors use our website so we can improve it, and to measure the reach of our content.</li>
+      <li><strong>Analytics</strong> — to understand our audience and improve the quality of our research content.</li>
+    </ul>
+    <p>We will never use your email address to send unsolicited commercial communications unrelated to BracketWise. We will never sell your email address to third parties.</p>
+  </div>
+
+  <!-- 4. COOKIES -->
+  <div class="policy-section" id="cookies">
+    <h2>4. Cookies and advertising</h2>
+    <h3>What are cookies</h3>
+    <p>Cookies are small text files placed on your device by websites you visit. They are used to make websites work efficiently and to provide information to website owners.</p>
+    <h3>Cookies we use</h3>
+    <ul>
+      <li><strong>Essential cookies</strong> — required for the website to function. Cannot be disabled.</li>
+      <li><strong>Analytics cookies</strong> — help us understand how visitors use our site (e.g., Google Analytics). These do not personally identify you.</li>
+      <li><strong>Advertising cookies</strong> — we use Google AdSense to display advertisements on our website. Google AdSense uses cookies to serve ads based on your prior visits to our website and other websites on the internet.</li>
+    </ul>
+    <h3>Google AdSense and advertising</h3>
+    <p>We use Google AdSense to display advertisements. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site and/or other sites on the internet. You may opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank">Google Ads Settings</a>.</p>
+    <p>For more information about how Google uses data when you use our website, visit <a href="https://policies.google.com/technologies/partner-sites" target="_blank">Google's privacy policy</a>.</p>
+    <h3>Managing cookies</h3>
+    <p>You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. If you do this, you may have to manually adjust some preferences every time you visit our site.</p>
+  </div>
+
+  <!-- 5. DATA SHARING -->
+  <div class="policy-section" id="data-sharing">
+    <h2>5. Data sharing</h2>
+    <p>We do not sell, trade, or rent your personal information to third parties. We may share your data only in the following limited circumstances:</p>
+    <ul>
+      <li><strong>Service providers</strong> — we use third-party services to operate our platform (email delivery, analytics, website hosting). These providers access your data only to perform services on our behalf and are bound by confidentiality obligations.</li>
+      <li><strong>Legal requirements</strong> — we may disclose your data if required to do so by law, court order, or government authority.</li>
+      <li><strong>Business transfer</strong> — if Virat Ventures is acquired or merged, your data may be transferred as part of that transaction. We will notify you before your data becomes subject to a different privacy policy.</li>
+    </ul>
+    <p>Third-party services we use include:</p>
+    <ul>
+      <li>GitHub Pages (website hosting) — <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">GitHub Privacy Statement</a></li>
+      <li>Google Analytics (usage analytics) — <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
+      <li>Google AdSense (advertising) — <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
+    </ul>
+  </div>
+
+  <!-- 6. YOUR RIGHTS -->
+  <div class="policy-section" id="your-rights">
+    <h2>6. Your rights under DPDP Act 2023</h2>
+    <p>Under the Digital Personal Data Protection Act, 2023 (India), you have the following rights regarding your personal data:</p>
+    <ul>
+      <li><strong>Right to access</strong> — you can request a copy of the personal data we hold about you</li>
+      <li><strong>Right to correction</strong> — you can request correction of inaccurate personal data</li>
+      <li><strong>Right to erasure</strong> — you can request deletion of your personal data</li>
+      <li><strong>Right to withdraw consent</strong> — you can withdraw consent for data processing at any time (e.g., unsubscribe from our email list)</li>
+      <li><strong>Right to grievance redressal</strong> — you can raise a grievance with us regarding processing of your personal data</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <strong>privacy@bracketwise.in</strong>. We will respond within 30 days.</p>
+    <p>To unsubscribe from our weekly brief, click the unsubscribe link in any email we send you, or email us at <strong>privacy@bracketwise.in</strong> with subject "Unsubscribe".</p>
+  </div>
+
+  <!-- 7. DATA SECURITY -->
+  <div class="policy-section" id="data-security">
+    <h2>7. Data security</h2>
+    <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. Our website uses HTTPS encryption (SSL/TLS) for all data transmitted between your browser and our servers.</p>
+    <p>However, no method of transmission over the internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal data, we cannot guarantee its absolute security.</p>
+    <p>We retain your email address only for as long as you are subscribed to our newsletter. Upon unsubscription, your email will be removed from our mailing list within 30 days.</p>
+  </div>
+
+  <!-- 8. CHILDREN -->
+  <div class="policy-section" id="children">
+    <h2>8. Children's privacy</h2>
+    <p>BracketWise is not directed at children under the age of 18. We do not knowingly collect personal data from anyone under 18 years of age. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at <strong>privacy@bracketwise.in</strong> and we will delete that information.</p>
+  </div>
+
+  <!-- 9. CHANGES -->
+  <div class="policy-section" id="changes">
+    <h2>9. Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date at the top.</p>
+    <p>We encourage you to review this Privacy Policy periodically. Your continued use of our website after any changes constitutes your acceptance of the updated policy.</p>
+  </div>
+
+  <!-- 10. CONTACT -->
+  <div class="policy-section" id="contact">
+    <h2>10. Contact us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+    <ul>
+      <li><strong>Email:</strong> privacy@bracketwise.in</li>
+      <li><strong>Website:</strong> bracketwise.in</li>
+      <li><strong>Location:</strong> Bengaluru, Karnataka, India</li>
+    </ul>
+    <p>We aim to respond to all privacy-related queries within 30 days.</p>
+  </div>
+
+  <!-- 11. INVESTMENT DISCLAIMER -->
+  <div class="policy-section" id="disclaimer">
+    <h2>11. Investment disclaimer</h2>
+    <div class="highlight-box">
+      BracketWise / Virat Ventures is NOT registered with the Securities and Exchange Board of India (SEBI) as an Investment Adviser under the SEBI (Investment Advisers) Regulations 2013, or as a Research Analyst under the SEBI (Research Analysts) Regulations 2014.
+    </div>
+    <p>All content published on bracketwise.in — including research observations, market analysis, tax information, and factor model outputs — is AI-generated and provided for informational and educational purposes only.</p>
+    <p>Nothing on this website constitutes:</p>
+    <ul>
+      <li>Investment advice or a recommendation to buy, sell, or hold any security</li>
+      <li>Portfolio management advice</li>
+      <li>A solicitation to invest in any financial instrument</li>
+      <li>Tax advice (consult a qualified CA for personalised tax guidance)</li>
+    </ul>
+    <p>Past performance of our research model does not guarantee future results. Equity investments are subject to market risk. The value of investments may go down as well as up. You may receive back less than you invest.</p>
+    <p>All investment decisions are the sole responsibility of the reader. Before investing, please read all relevant documents carefully and consider consulting a SEBI-registered investment adviser for personalised advice.</p>
+    <p><strong>SEBI Investor Helpline:</strong> 1800 266 7575 | <a href="https://www.sebi.gov.in" target="_blank">sebi.gov.in</a></p>
+  </div>
+
+  <!-- 12. TERMS OF USE -->
+  <div class="policy-section" id="terms">
+    <h2>12. Terms of use</h2>
+    <h3>Acceptance of terms</h3>
+    <p>By accessing or using bracketwise.in, you agree to be bound by these terms. If you do not agree, please do not use our website.</p>
+    <h3>Permitted use</h3>
+    <p>You may access and use our website for personal, non-commercial informational purposes only. You may not reproduce, distribute, or create derivative works from our content without prior written permission from Virat Ventures.</p>
+    <h3>Intellectual property</h3>
+    <p>All content on bracketwise.in — including text, design, graphics, and the underlying research methodology — is the property of Virat Ventures and is protected by applicable intellectual property laws. Our factor model, signal logic, and research methodology are proprietary and confidential.</p>
+    <h3>Limitation of liability</h3>
+    <p>To the maximum extent permitted by law, Virat Ventures shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of or reliance on any content on bracketwise.in. This includes any losses arising from investment decisions made based on our research content.</p>
+    <h3>Governing law</h3>
+    <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts of Bengaluru, Karnataka.</p>
+    <h3>Contact</h3>
+    <p>For any queries regarding these terms, contact us at <strong>legal@bracketwise.in</strong></p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Bracket<span>Wise</span></a>
+      <p class="footer-desc">AI-generated equity research for Indian investors, filtered by tax bracket. A Virat Ventures product.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#brackets">Tax brackets</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#signup">Get free brief</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="privacy.html#terms">Terms of use</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="privacy.html#terms">Terms of use</a></li>
+        <li><a href="privacy.html#disclaimer">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disc">DISCLAIMER: BracketWise / Virat Ventures is NOT registered with SEBI as an Investment Adviser or Research Analyst. All content is AI-generated equity research for informational and educational purposes only. This does not constitute investment advice. All investment decisions are your sole responsibility. SEBI Helpline: 1800 266 7575 | sebi.gov.in</p>
+    <p class="footer-copy">© 2026 Virat Ventures</p>
+  </div>
+</footer>
+
+</body>
+</html>

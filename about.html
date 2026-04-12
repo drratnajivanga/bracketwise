@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — BracketWise</title>
+<meta name="description" content="BracketWise is AI-generated equity research for Indian investors, filtered by tax bracket. Built by a 30% bracket investor, for 30% bracket investors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1117;--paper:#F7F3EE;--cream:#EDE8E1;
+  --gold:#C9A84C;--gold-lt:#E8C97A;
+  --green:#1A6B4A;--green-lt:#D4EDE4;
+  --muted:#6B6560;--border:#D6CFC6;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(247,243,238,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.83rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:0.5rem 1.2rem!important;border-radius:2px}
+
+/* PAGE HERO */
+.page-hero{padding:8rem 4rem 4rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.page-eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.5rem}
+.page-title em{font-style:normal;color:var(--gold)}
+.page-sub{font-size:1rem;color:var(--muted);line-height:1.75;font-weight:300;max-width:420px}
+
+/* STORY CARD */
+.story-card{background:var(--ink);color:var(--paper);border-radius:6px;padding:2rem;position:relative;overflow:hidden}
+.story-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--green))}
+.story-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,238,0.45);margin-bottom:1rem}
+.story-quote{font-family:var(--serif);font-size:1.15rem;font-weight:400;font-style:italic;line-height:1.6;color:var(--paper);margin-bottom:1.2rem}
+.story-attr{font-family:var(--mono);font-size:0.7rem;color:rgba(247,243,238,0.45);letter-spacing:0.08em}
+
+/* CONTENT SECTIONS */
+.section{padding:5rem 4rem;max-width:1200px;margin:0 auto}
+.section-divider{border:none;border-top:1px solid var(--border);margin:0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+
+.sec-eye{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem}
+.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;line-height:1.15;letter-spacing:-0.025em;margin-bottom:1rem}
+.sec-body{font-size:0.95rem;color:var(--muted);line-height:1.8;font-weight:300}
+.sec-body p{margin-bottom:1rem}
+.sec-body p:last-child{margin-bottom:0}
+
+/* PRINCIPLE CARDS */
+.principle{padding:1.8rem;background:white;border:1px solid var(--border);border-radius:3px}
+.principle-num{font-family:var(--serif);font-size:2.5rem;font-weight:900;color:var(--cream);line-height:1;margin-bottom:0.75rem}
+.principle-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;margin-bottom:0.5rem}
+.principle-body{font-size:0.83rem;color:var(--muted);line-height:1.7}
+
+/* PROFILE STATS */
+.profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem}
+.profile-stat{background:var(--cream);border-radius:3px;padding:1.2rem}
+.profile-stat-val{font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--ink);line-height:1;margin-bottom:0.25rem}
+.profile-stat-val.gold{color:var(--gold)}
+.profile-stat-lbl{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem;margin-top:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.tl-item{position:relative;padding-bottom:1.8rem}
+.tl-item::before{content:'';position:absolute;left:-2.4rem;top:0.4rem;width:8px;height:8px;background:var(--gold);border-radius:50%}
+.tl-date{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem}
+.tl-title{font-family:var(--serif);font-size:0.97rem;font-weight:700;margin-bottom:0.25rem}
+.tl-body{font-size:0.82rem;color:var(--muted);line-height:1.6}
+
+/* DARK SECTION */
+.dark-section{background:var(--ink);color:var(--paper);padding:5rem 4rem}
+.dark-inner{max-width:1200px;margin:0 auto}
+.dark-section .sec-title{color:var(--paper)}
+.dark-section .sec-body{color:rgba(247,243,238,0.6)}
+
+/* CTA */
+.cta-strip{background:var(--cream);padding:4rem;text-align:center}
+.cta-strip-inner{max-width:500px;margin:0 auto}
+.cta-form{display:flex;max-width:400px;margin:1.5rem auto 0}
+.cta-form input{flex:1;padding:0.85rem 1rem;border:1px solid var(--border);border-right:none;background:white;font-family:var(--sans);font-size:0.9rem;outline:none;border-radius:2px 0 0 2px;color:var(--ink)}
+.cta-form input::placeholder{color:#aaa}
+.cta-form button{padding:0.85rem 1.3rem;background:var(--gold);color:var(--ink);border:none;font-family:var(--sans);font-weight:600;font-size:0.83rem;cursor:pointer;border-radius:0 2px 2px 0;transition:background 0.2s;white-space:nowrap}
+.cta-form button:hover{background:var(--gold-lt)}
+.success-msg{display:none;background:var(--green-lt);color:var(--green);padding:0.7rem 1rem;border-radius:2px;font-size:0.83rem;margin-top:0.7rem;font-weight:500}
+
+/* FOOTER */
+footer{background:#060A0F;color:rgba(247,243,238,0.45);padding:3rem 4rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand .logo{color:var(--paper);display:block;margin-bottom:0.65rem}
+.footer-desc{font-size:0.78rem;line-height:1.7;color:rgba(247,243,238,0.35);max-width:240px}
+.footer-col h4{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,243,238,0.45);margin-bottom:0.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.45rem}
+.footer-col ul li a{font-size:0.8rem;color:rgba(247,243,238,0.35);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--paper)}
+.footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.8rem;border-top:1px solid rgba(247,243,238,0.06);display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
+.footer-disc{font-size:0.7rem;color:rgba(247,243,238,0.22);line-height:1.7;max-width:680px}
+.footer-copy{font-size:0.7rem;color:rgba(247,243,238,0.22);white-space:nowrap}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .page-hero,.two-col{grid-template-columns:1fr}
+  .three-col{grid-template-columns:1fr}
+  .profile-grid{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .section,.dark-section,.cta-strip,footer{padding:4rem 1.5rem}
+  .page-hero{padding:7rem 1.5rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Bracket<span>Wise</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How it works</a></li>
+    <li><a href="index.html#brackets">Tax brackets</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="about.html" style="color:var(--ink)">About</a></li>
+    <li><a href="index.html#signup" class="nav-cta">Get free brief</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div>
+    <p class="page-eyebrow">Our story</p>
+    <h1 class="page-title">Built by a 30% bracket investor,<br>for <em>30% bracket</em> investors.</h1>
+    <p class="page-sub">BracketWise exists because generic investment content ignores the single biggest drag on returns for high-income Indians — taxes. We built the research platform we wished existed.</p>
+  </div>
+  <div class="story-card">
+    <p class="story-label">Why BracketWise exists</p>
+    <p class="story-quote">"I kept seeing great investment ideas that made no sense for my tax bracket. A stock with 25% gross return, held for 8 months, costs 20% STCG. That's not a great investment anymore — it's barely beating a debt fund. Nobody was building research that accounted for this."</p>
+    <p class="story-attr">— Founder, BracketWise · Bengaluru</p>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- THE PROBLEM -->
+<section class="section">
+  <div class="two-col">
+    <div>
+      <p class="sec-eye">The problem we solve</p>
+      <h2 class="sec-title">Tax is the hidden return killer.</h2>
+      <div class="sec-body">
+        <p>At the 30% income tax bracket, the difference between a 12-month hold (LTCG at 12.5%) and an 11-month hold (STCG at 20%) on ₹10 lakh of gains is ₹75,000. Every year. On gains you actually earned.</p>
+        <p>Most investment research is written for institutional investors who operate in a completely different tax world. The institutional analyst issuing a research rating on HDFCBANK pays no STCG — their fund is structured differently. You do.</p>
+        <p>BracketWise is built for individual investors in the 30% tax slab who want research that accounts for the reality of their tax situation — not research written as if taxes don't exist.</p>
+      </div>
+    </div>
+    <div>
+      <div class="profile-grid">
+        <div class="profile-stat">
+          <div class="profile-stat-val">30%</div>
+          <div class="profile-stat-lbl">Income tax slab — our primary audience</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-val gold">₹75K</div>
+          <div class="profile-stat-lbl">Saved per ₹10L gains by choosing LTCG over STCG</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-val">12.5%</div>
+          <div class="profile-stat-lbl">LTCG rate after ₹1.25L exemption — vs 20% STCG</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-val gold">₹1.25L</div>
+          <div class="profile-stat-lbl">Free LTCG exemption that resets every April</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- OUR PRINCIPLES -->
+<section class="section">
+  <p class="sec-eye">How we think</p>
+  <h2 class="sec-title">Three principles that guide everything.</h2>
+  <div class="three-col">
+    <div class="principle">
+      <div class="principle-num">01</div>
+      <div class="principle-title">Output only, process private</div>
+      <p class="principle-body">We share what our research observes — not how we arrive there. Our factor model, weights, and thresholds are proprietary. What you receive is the signal, not the machinery behind it.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">02</div>
+      <div class="principle-title">Track record built in public</div>
+      <p class="principle-body">Every research observation is logged with a date and reviewed publicly at the outcome horizon. We report what we got right and what we missed. A track record built in public is the only kind worth trusting.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-num">03</div>
+      <div class="principle-title">Tax discipline above all</div>
+      <p class="principle-body">Every signal is evaluated for after-tax return, not gross return. A 22% return held 12+ months beats a 25% return held 8 months at the 30% bracket. We never forget this.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- JOURNEY TIMELINE -->
+<section class="section">
+  <div class="two-col">
+    <div>
+      <p class="sec-eye">The journey</p>
+      <h2 class="sec-title">From personal tool to public platform.</h2>
+      <div class="sec-body">
+        <p>BracketWise started as a private AI agent built for one portfolio — the founder's own. The goal was simple: automate the daily research workflow that was being done manually every morning before markets opened.</p>
+        <p>After building factor screening, macro intelligence, tax calendar alerts, and a self-improving model — the question became obvious: why keep this private? Every 30% bracket investor in India has the same problem. The platform became a product.</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Early 2026</div>
+        <div class="tl-title">Private AI agent built</div>
+        <p class="tl-body">Factor screener, macro intelligence, Telegram morning briefing — all running privately for one portfolio.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">April 2026</div>
+        <div class="tl-title">BracketWise launched</div>
+        <p class="tl-body">Platform goes public. Track record clock starts. First weekly brief published. Signal log begins.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Coming soon</div>
+        <div class="tl-title">20% and 5% bracket editions</div>
+        <p class="tl-body">Different tax slabs, different research filters. Launching after the 30% edition builds its track record.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Future</div>
+        <div class="tl-title">Portfolio personalisation</div>
+        <p class="tl-body">Upload your portfolio, get research filtered for your exact holdings, tax position, and ESOP situation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARK SECTION — COMPLIANCE -->
+<div class="dark-section">
+  <div class="dark-inner">
+    <p class="sec-eye" style="color:var(--gold)">Legal clarity</p>
+    <h2 class="sec-title">What we are — and what we are not.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem">
+      <div>
+        <p style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem">What BracketWise IS</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:var(--gold);flex-shrink:0">→</span>An AI-generated equity research platform</li>
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:var(--gold);flex-shrink:0">→</span>A source of general market observations and analysis</li>
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:var(--gold);flex-shrink:0">→</span>A tax calendar and financial awareness tool</li>
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:var(--gold);flex-shrink:0">→</span>An educational resource for high-income Indian investors</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#E88080;margin-bottom:0.75rem">What BracketWise is NOT</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:#E88080;flex-shrink:0">✕</span>A SEBI-registered Investment Adviser (IA)</li>
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:#E88080;flex-shrink:0">✕</span>A SEBI-registered Research Analyst (RA)</li>
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:#E88080;flex-shrink:0">✕</span>A source of personalised investment advice</li>
+          <li style="font-size:0.88rem;color:rgba(247,243,238,0.7);display:flex;gap:0.6rem;align-items:flex-start"><span style="color:#E88080;flex-shrink:0">✕</span>A portfolio management service</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:2rem;font-size:0.8rem;color:rgba(247,243,238,0.4);line-height:1.7;max-width:680px">
+      All content on BracketWise is AI-generated market research for informational and educational purposes only. Nothing constitutes investment advice or a recommendation to transact in any security. All investment decisions are your sole responsibility. Consult a SEBI-registered investment adviser for personalised advice. SEBI Helpline: 1800 266 7575 | sebi.gov.in
+    </p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <p class="sec-eye">Join us</p>
+    <h2 class="sec-title" style="max-width:400px;margin:0 auto 0.5rem">Get the weekly brief. Free.</h2>
+    <p style="font-size:0.88rem;color:var(--muted)">One market observation, one tax action, one thing to watch. Every Sunday.</p>
+    <div class="cta-form">
+      <input type="email" id="about-email" placeholder="your@email.com">
+      <button onclick="signup()">Subscribe →</button>
+    </div>
+    <div class="success-msg" id="about-ok">✓ You're on the list. First brief arrives this Sunday.</div>
+    <p style="margin-top:0.75rem;font-size:0.72rem;color:var(--muted)">Free · No spam · Unsubscribe anytime · Not SEBI-registered advice</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Bracket<span>Wise</span></a>
+      <p class="footer-desc">AI-generated equity research for Indian investors, filtered by tax bracket. A Virat Ventures product.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#brackets">Tax brackets</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#signup">Get free brief</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="privacy.html#terms">Terms of use</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="privacy.html#terms">Terms of use</a></li>
+        <li><a href="privacy.html#disclaimer">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disc">DISCLAIMER: BracketWise / Virat Ventures is NOT registered with SEBI as an Investment Adviser or Research Analyst. All content is AI-generated equity research for informational and educational purposes only. This does not constitute investment advice or a recommendation to buy, sell, or hold any security. All investment decisions are your sole responsibility. SEBI Helpline: 1800 266 7575 | sebi.gov.in</p>
+    <p class="footer-copy">© 2026 Virat Ventures</p>
+  </div>
+</footer>
+
+<script>
+function signup() {
+  const inp = document.getElementById('about-email');
+  const ok = document.getElementById('about-ok');
+  const email = inp.value.trim();
+  if (!email || !email.includes('@')) {
+    inp.style.borderColor = '#E88080';
+    setTimeout(() => inp.style.borderColor = '', 2000);
+    return;
+  }
+  const list = JSON.parse(localStorage.getItem('bw') || '[]');
+  list.push({ email, source: 'about', date: new Date().toISOString() });
+  localStorage.setItem('bw', JSON.stringify(list));
+  inp.closest('.cta-form').style.display = 'none';
+  ok.style.display = 'block';
+}
+</script>
+</body>
+</html>
