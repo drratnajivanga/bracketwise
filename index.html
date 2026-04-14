@@ -546,20 +546,51 @@ function setBracket(btn,b){
   document.getElementById('bnote').textContent=notes[b];
 }
 
-function signup(src){
-  const inp=document.getElementById(src+'-email');
-  const ok=document.getElementById(src+'-ok');
-  const email=inp.value.trim();
-  if(!email||!email.includes('@')){
+// ── Signup: Formspree + localStorage backup ───────────────────────────────
+// Replace YOUR_FORM_ID below with your Formspree endpoint ID.
+// Steps: formspree.io → New Form → copy the ID from the endpoint URL.
+// Free tier: 50 submissions/month. Each signup emails you directly.
+const FORMSPREE_ID = "mzdyzgzp"; // e.g. "xpwzgkqv"
+
+async function signup(src){
+  const inp = document.getElementById(src+'-email');
+  const ok  = document.getElementById(src+'-ok');
+  const email = inp.value.trim();
+
+  if(!email || !email.includes('@')){
     inp.style.borderColor='#E88080';
     setTimeout(()=>inp.style.borderColor='',2000);
     return;
   }
-  const list=JSON.parse(localStorage.getItem('bw')||'[]');
-  list.push({email,bracket:document.querySelector('.bbtn.active')?.textContent,date:new Date().toISOString()});
-  localStorage.setItem('bw',JSON.stringify(list));
+
+  // Optimistic UI — show success immediately
   inp.closest('.signup-form,.cta-form').style.display='none';
   ok.style.display='block';
+
+  // localStorage backup (works even if Formspree fails)
+  const list = JSON.parse(localStorage.getItem('bw')||'[]');
+  const bracket = document.querySelector('.bbtn.active')?.textContent || '30%';
+  list.push({email, bracket, date: new Date().toISOString(), src});
+  localStorage.setItem('bw', JSON.stringify(list));
+
+  // POST to Formspree (real email notification to you)
+  if(FORMSPREE_ID !== "YOUR_FORM_ID"){
+    try {
+      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({
+          email,
+          bracket,
+          source: src === 'h' ? 'hero' : 'cta',
+          _subject: `New BracketWise signup: ${email}`
+        })
+      });
+    } catch(e){
+      // Silent fail — localStorage backup already saved
+      console.log("Formspree unavailable, email saved locally:", email);
+    }
+  }
 }
 
 const obs=new IntersectionObserver((entries)=>{
